@@ -1,0 +1,32 @@
+before_script:
+- echo $SCRIPT_VERSION
+- pwd
+- ls -all
+- $MVN -v
+
+variables:
+  SCRIPT_VERSION: 0.1.0
+  MVN: /home/team/maven-2.2.1/bin/mvn
+  JAVA_HOME: /usr/local/java/jdk1.7.0/jre
+  PROJECT_VERSION: $($MVN help:evaluate -Dexpression=project.version | grep -v "^\[")
+  GIT_STRATEGY: clone
+  GIT_SUBMODULE_STRATEGY: normal
+
+stages:
+- build
+
+build-install:
+    stage: 'build'
+    script:
+    - $MVN clean install
+    only:
+    - develop
+    - master
+
+build-package:
+    stage: 'build'
+    script:
+    - $MVN clean package
+    except:
+    - develop
+    - master
