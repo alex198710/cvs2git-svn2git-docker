@@ -2,7 +2,9 @@
 /!\/!\ Attention, pour pouvoir builder correctement ces images docker, il faut se placer à la racine du projet docker-files. Pourquoi ? car docker prend comme contexte de build le dossier courant et dans le dossier common, il y a un script commun aux deux images.
 
 Dans le fichier common/common.py, changez l'url pour votre serveur GITLAB. (GITLAB_BASE_URL)
+
 Dans le fichier cvs2git/cvs2git.py, changez les paramètres requis. (FIELDS TO SET)
+
 Dans le fichier svn2git/svn2git.py, changez les paramètres requis. (FIELDS TO SET)
 
 # Migrate CVS project to GIT
@@ -99,7 +101,7 @@ git svn fetch
 
 Après quelques minutes ou dizaines de minutes d'attente, il suffit de checkout chacune des branches et d'exécuter à la fin cette commande pour pusher toutes les branches trouvées sur le repo distant:
 ```
-git push -u --all
+git push --all
 ```
 
 
@@ -148,5 +150,5 @@ git branch -d $tag
 
 A la fin, exécuter cette commande pour pusher tous les tags créés sur le repo distant:
 ```
-git push -u --tags
+git push --tags
 ```
